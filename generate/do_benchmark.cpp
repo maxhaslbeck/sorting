@@ -730,6 +730,21 @@ void test_llstring(string name, size_t NITER, vector<llstring> &B) {
 }
 #endif
 
+
+void serialize_uint64(std::vector<uint64_t> &A) {
+  std::cout << A.size() << endl;
+  for (auto i=A.begin();i!=A.end();++i) {
+    std::cout << *i << endl;
+  }
+}
+
+void serialize_llstring(std::vector<llstring> &A) {
+  for (auto i=A.begin();i!=A.end();++i) {
+    std::cout << bcnv_str(*i) << " ";
+  }
+  std::cout << endl;
+}
+
 int main(int argc, char** argv) {
 
   if (argc != 6) {
@@ -743,8 +758,18 @@ int main(int argc, char** argv) {
   size_t NELEM=stoul(argv[4]);
   size_t NITER=stoul(argv[5]);
 
-
-  if (type_name == "uint64") {
+  if (algo_name=="serialize") {
+    if (type_name == "uint64") {
+      auto A = Int_Generator::generate(NELEM,data_name);
+      serialize_uint64(A);
+    } else if (type_name == "llstring") {
+      auto A = String_Generator::generate(NELEM,data_name);
+      serialize_llstring(A);
+    } else {
+      cout<<"No such data type "<<type_name<<endl;
+      exit(1);
+    }
+  } else if (type_name == "uint64") {
     auto A = Int_Generator::generate(NELEM,data_name);
 #ifdef NO_LLVM
     cout<<"NO_LLVM ";

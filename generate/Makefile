@@ -42,5 +42,8 @@ stest: stest.cpp introsort_instr.ll Makefile
 input.bin: file_generator Makefile
 	./file_generator input.bin 125000000
 
+extract_benchmarks: do_benchmark input.bin all_benchmarks.sh
+	./extract_benchmarks.sh 10000
+
 run: do_benchmark input.bin all_benchmarks.sh
 	./all_benchmarks.sh
