@@ -51,6 +51,9 @@ do_oracle: oracle.cpp $(gcode)/introsort.ll $(libs) Makefile
 do_stdsort: stdsort.cpp $(gcode)/introsort.ll $(libs) Makefile
 	$(compile) ./stdsort.cpp -o "../algos/stdsort"
 
+do_pdqsort: stdsort.cpp $(gcode)/introsort.ll $(libs) Makefile
+	$(compile) ./boostpdq.cpp -o "../algos/boostpdqsort"
+
 do_flawed_sort: flawed_sort.cpp $(gcode)/introsort.ll $(libs) Makefile
 	$(compile) ./flawed_sort.cpp -o "../algos/flawed_sort"
 
@@ -60,7 +63,7 @@ do_insertion_sort: insertion_sort.cpp $(gcode)/introsort.ll $(libs) Makefile
 prepare_algos: Makefile
 	mkdir -p "../algos"
 
-do_algos: prepare_algos do_oracle do_stdsort do_flawed_sort do_insertion_sort
+do_algos: prepare_algos do_oracle do_stdsort do_pdqsort do_flawed_sort do_insertion_sort
 
 run: do_benchmark input.bin all_benchmarks.sh
 	./all_benchmarks.sh
