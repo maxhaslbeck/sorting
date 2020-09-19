@@ -27,6 +27,7 @@ export STR_DATA="random random-dup-10 random-boolean organ-pipe sorted equal   a
 
 ########################## END CONFIG SECTION ##################
 
+mkdir -p log
 
 export LOGFILE="log/sortbench-$(date -Iseconds).log"
 

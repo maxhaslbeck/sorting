@@ -1,8 +1,8 @@
 default: do_benchmark do_benchmark_gcc sexplore
 
-gcode=../../thys/examples/code
-libs=../../src/lib_isabelle_llvm.cpp ../../src/lib_isabelle_llvm.c
-cflags=-std=c++11 -stdlib=libstdc++ -Wall -Wno-unused-function -O3 -flto -I${HOME}/include -I$(gcode) ../../src/lib_isabelle_llvm.cpp
+gcode=../code
+libs=../src/lib_isabelle_llvm.cpp ../src/lib_isabelle_llvm.c
+cflags=-std=c++11 -stdlib=libstdc++ -Wall -Wno-unused-function -O3 -flto -I${HOME}/include -I$(gcode) ../src/lib_isabelle_llvm.cpp
 # cflags=-std=c++11 -stdlib=libstdc++ -march=native -w -Wall -fexceptions -O3 -I${HOME}/include -I$(gcode) -s
 # -mllvm -inline-threshold=100000 -flto
 
