@@ -1,4 +1,4 @@
-default: do_benchmark do_benchmark_gcc sexplore
+default: extract_benchmarks do_algos 
 
 gcode=../code
 libs=../src/lib_isabelle_llvm.cpp ../src/lib_isabelle_llvm.c
@@ -44,6 +44,23 @@ input.bin: file_generator Makefile
 
 extract_benchmarks: do_benchmark input.bin all_benchmarks.sh
 	./extract_benchmarks.sh 10000
+
+do_oracle: oracle.cpp $(gcode)/introsort.ll $(libs) Makefile
+	$(compile) ./oracle.cpp $(gcode)/introsort.ll -o "../algos/oracle"
+
+do_stdsort: stdsort.cpp $(gcode)/introsort.ll $(libs) Makefile
+	$(compile) ./stdsort.cpp -o "../algos/stdsort"
+
+do_flawed_sort: flawed_sort.cpp $(gcode)/introsort.ll $(libs) Makefile
+	$(compile) ./flawed_sort.cpp -o "../algos/flawed_sort"
+
+do_insertion_sort: insertion_sort.cpp $(gcode)/introsort.ll $(libs) Makefile
+	$(compile) ./insertion_sort.cpp -o "../algos/insertion_sort"
+
+prepare_algos: Makefile
+	mkdir -p "../algos"
+
+do_algos: prepare_algos do_oracle do_stdsort do_flawed_sort do_insertion_sort
 
 run: do_benchmark input.bin all_benchmarks.sh
 	./all_benchmarks.sh
