@@ -3,6 +3,7 @@
 This repository collects some sorting algorithms.
 - introsort, verified in Isabelle by Peter Lammich [https://github.com/lammich/isabelle_llvm]
 - std::sort
+- boost's pdqsort
 - an insertionsort implementation
 
 and generates some benchmark testcases
